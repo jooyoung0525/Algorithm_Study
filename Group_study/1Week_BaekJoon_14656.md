@@ -1,7 +1,8 @@
 ![dd](https://user-images.githubusercontent.com/29946480/51535895-2581db00-1e8d-11e9-98ac-e79e4dfc90f5.JPG)
 
       
-```#include<cstdio>
+```c
+#include<cstdio>
 #include<cstdlib>
 
 
@@ -35,4 +36,5 @@ int main() {
 	system("pause");
 	return 0;
 
-}```
+}
+```
