@@ -6,4 +6,4 @@ Algorithm_study for Test.
 
 - Using Language : *C/C++*
 
-**BaekJoon,Programmers etc...**
+**BaekJoon, Programmers etc...**
