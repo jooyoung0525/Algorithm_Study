@@ -135,9 +135,10 @@ void DFS(int curx, int cury, int N, int M)
 
 		curx = S.top().first;
 		cury = S.top().second;
-		S.pop();
-
+		
 		DFS(curx, cury, N, M);
+
+		//S.pop();
 	}
 
 }
@@ -156,6 +157,7 @@ int main()
 		}
 	}
 
+	DFS(0, 0, N, M);
 
 	for (int i = 0; i < N; i++)
 	{
