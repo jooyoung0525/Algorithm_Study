@@ -41,6 +41,9 @@ S.empty()          //S가 비었으면 1리턴, 아니면 0 리턴.
 ![2178](https://user-images.githubusercontent.com/29946480/51797612-e1565800-2249-11e9-9881-c0d5b151bdc6.JPG)
 
 -----------------------------------------------------------------------------------------------------------------------------
+
+### 첫번째 시도(실패)
+
 ```c
 #include <cstdio>
 #include <cstdlib>
@@ -87,6 +90,84 @@ int main()
 	DFS(0,0,N,M);
 
 	printf("%d", check);
+
+	system("pause");
+	return 0;
+}
+```
+
+### 두번째시도 -  stack이용하려함 (실패)
+
+```ㅊ
+#include<cstdio>
+#include<cstdlib>
+#include<stack>
+
+using namespace std;
+
+int miro[100][100] = {};
+int check[100][100] = {};
+int nextx, nexty;
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,1,-1 };
+int total;
+
+stack <pair<int, int>> S;
+
+void DFS(int curx, int cury, int N, int M)
+{
+	S.push(make_pair(curx, cury));
+	check[curx][cury] = 1;
+	S.pop();
+
+	while (!S.empty()) {
+
+		for (int i = 0; i < 4; i++)
+		{
+			nextx = curx + dx[i];
+			nexty = cury + dy[i];
+			if (nextx > -1 || nextx < N || nexty > -1 || nexty < M) {
+
+				S.push(make_pair(nextx, nexty));
+			}
+		}
+
+		curx = S.top().first;
+		cury = S.top().second;
+		S.pop();
+
+		DFS(curx, cury, N, M);
+	}
+
+}
+
+int main()
+{
+
+	int N, M;
+	scanf("%d %d", &N, &M);
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			scanf("%1d", &miro[i][j]);
+		}
+	}
+
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (check[i][j] == 1)
+				total += check[i][j];
+
+		}
+	}
+
+
+	printf("%d", total);
 
 	system("pause");
 	return 0;
