@@ -99,7 +99,7 @@ int main()
 
 ### 두번째시도 -  stack이용하려함 (실패)
 
-```
+```c
 #include<cstdio>
 #include<cstdlib>
 #include<stack>
