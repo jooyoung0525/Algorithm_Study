@@ -99,6 +99,8 @@ int main()
 
 ### 두번째시도 -  stack이용하려함 (실패)
 
+--> stack에다가 현재위치 넣고, check배열에 현재위치 1 
+
 ```c
 #include<cstdio>
 #include<cstdlib>
