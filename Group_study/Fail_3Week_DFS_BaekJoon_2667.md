@@ -14,6 +14,10 @@ for문 밑에 또 다른 연산을 집어넣었을때
 2. break는 해당 for문을 중지하고 그 다음 연산을 수행
 
 ---------------------------------------------------------------------------------------------------------
+
+왜틀린지.......
+
+답잘나오는디ㅠㅠㅠㅠㅠㅠㅠㅠㅠ으아ㅏㅏㅏ
 ```c
 #include<cstdio>
 #include<cstdlib>
@@ -34,13 +38,13 @@ int num[30];
 
 
 
-void DFS(int curx, int cury, int N){
+void DFS(int curx, int cury, int N) {
 
 	int nextx, nexty;
 
-	
-	check[curx][cury] = 1;
 
+	check[curx][cury] = 1;
+	
 	for (int i = 0; i < 4; i++)
 	{
 		nextx = curx + dx[i];
@@ -48,16 +52,17 @@ void DFS(int curx, int cury, int N){
 
 		if (nextx < 0 || nextx > N || nexty < 0 || nexty > N)
 			continue;
-		
+
 		else {
-			
+
 			if (check[nextx][nexty] == 0 && arr[nextx][nexty] == 1) {
 				cnt++;
 				DFS(nextx, nexty, N);
 				
+
 			}
 		}
-		
+
 
 	}
 
@@ -77,15 +82,21 @@ int main()
 		for (int j = 0; j < N; j++) {
 			if (arr[i][j] == 1 && check[i][j] == 0) {
 				cnt = 0;
+
+				cnt++;
+
 				DFS(i, j, N);
+
 				num[danji] = cnt;
+
 				danji++;
 				
+
 			}
 		}
 	}
 
-	sort(num,num+danji);
+	sort(num, num + danji);
 
 	printf("%d\n", danji);
 
