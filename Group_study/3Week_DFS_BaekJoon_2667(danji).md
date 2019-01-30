@@ -16,9 +16,13 @@
 #include <algorithm>
 ```
 
+
+
 **1. 배열에서 이용**
 
 - (arr,arr+5) //배열시작부터 배열+5까지 sort
+
+
 
 **2.vector에서 이용**
 
