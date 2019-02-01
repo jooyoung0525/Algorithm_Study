@@ -223,3 +223,152 @@ int main()
 	return 0;
 }
 ```
+---------------------------------------------------------------------------------------------------------------
+```c
+#include<cstdio>
+#include<cstdlib>
+#include<queue>
+#include <iostream>
+#include<algorithm>
+
+using namespace std;
+
+int tomato[1100][1100] = { 0 , };
+int tomato1[1100][1100] = { 0 , };
+int visited[1100][1100] = { 0, };
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+int ans;
+
+
+queue<pair<int,int>> Q;
+
+int answer(int M, int N)
+{
+	
+	int MAX[1000];
+
+	for (int i = 0; i < M; i++) {
+
+		MAX[i] = *max_element(visited[i], visited[i] + N);
+
+	}
+
+	int MAX2 = *max_element(MAX, MAX + N);
+
+	
+
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < N; j++) {
+
+
+			if (tomato1[i][j] == 0) {
+				ans = -1;
+				break;
+			}
+			else
+			{
+				if (visited[i][j] == 0 && tomato[i][j] != -1)
+				{
+					ans = 0;
+					break;
+				}
+				if (tomato1[i][j] == -1)
+				{
+					ans = 0;
+					break;
+				}
+				else {
+					ans = MAX2 - 1;
+					break;
+				}
+
+			}
+		}
+	}
+	
+	return ans;
+	
+}
+
+void BFS (int curx, int cury, int M, int N )
+{
+
+	//Q.push(make_pair(curx, cury));
+	//visited[curx][cury] = 1;
+
+	while (!Q.empty())
+	{
+		int X = Q.front().first;
+		int Y = Q.front().second;
+		Q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			int nx = X + dx[i];
+			int ny = Y + dy[i];
+
+			if (nx <= -1 || nx > M || ny <= -1 || ny > N) continue;
+
+			if (visited[nx][ny] == 0 && tomato[nx][ny] == 0)
+			{
+					Q.push(make_pair(nx, ny));
+					visited[nx][ny] = 1;
+					visited[nx][ny] = visited[X][Y] + 1;
+					tomato1[nx][ny] = 1;
+			}
+			
+		
+			
+		}
+
+
+	}
+
+
+
+	
+}
+
+int main()
+{
+	int M, N;
+	//scanf("%d %d", &M, &N);
+	cin >> N >> M; //행 열 순
+
+	for (int i = 0; i < M; i++) { //행
+		for (int j = 0; j < N; j++) { //열
+			//scanf("%d ", &tomato[i][j]);
+			cin >> tomato[i][j];
+		}
+	}
+
+	
+
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < N; j++) {
+			if (tomato[i][j] == 1)
+			{
+				Q.push(make_pair(i, j));
+				visited[i][j] = 1;
+				tomato1[i][j] = 1;
+			}
+			else if (tomato[i][j] == -1)
+			{
+				tomato1[i][j] = 1;
+			}
+		}
+	}
+
+	BFS(0, 0, M, N);
+
+	printf("%d",answer(M, N));
+	
+
+	
+
+	system("pause");
+	return 0;
+}
+```
+
