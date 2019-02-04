@@ -299,3 +299,86 @@ int main()
 	return 0;
 }
 ```
+-----------------------------------------------------------------------------------------------------------------
+
+# 다른사람이 짠코드 나랑제일비슷한거!! 뭐가다르냐???,,,,똑같은거같은데
+
+
+```c
+//BJ7576 토마토
+
+#include <iostream>
+#include <algorithm>
+#include <queue>
+
+using namespace std;
+
+int Max();
+
+int box[1001][1001] = {0, };
+int check[1001][1001] = {0, };
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, 1, 0, -1};
+int N, M;
+
+int main(){
+    
+    queue<pair<int, int>> q;
+    scanf("%d %d", &M, &N);
+    
+    for(int i = 0; i<N; i++){
+        for(int j = 0; j<M; j++){
+            scanf("%d", &box[i][j]);
+        }
+    }//입력 끝
+    
+    for(int i = 0; i<N; i++){
+        for(int j = 0; j<M; j++){
+            if(box[i][j] == 1&&check[i][j]==0){
+                
+                q.push(make_pair(i,j));
+                check[i][j] = 1;
+            }
+        }
+    }
+    int x, y;
+    while(!q.empty()){//BFS탐색 시작
+        x = q.front().first;
+        y = q.front().second;
+        q.pop();
+        
+        for(int i = 0; i<4; i++){
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            
+            if(0<=nx && nx<N && 0<=ny && ny<M){
+                if(box[nx][ny]==0 & check[nx][ny]==0){ //토마토가 익지 않았으면 익힌다
+                    check[nx][ny] = check[x][y] + 1;
+                    q.push(make_pair(nx,ny));
+                    box[nx][ny] = 1;
+                }
+                
+                else if(box[nx][ny] == -1 && check[nx][ny]==0){
+                    check[nx][ny] = -1;
+                }
+            }
+        }
+        
+    }//BFS 탐색 끝
+    printf("%d", Max());
+}
+
+int Max(){
+    int maxnum = 0;
+    for(int i = 0; i<N; i++){
+        for(int j = 0; j<M; j++){
+            if(box[i][j] == 0)
+                return -1;
+            else if(check[i][j]>maxnum)
+                maxnum = check[i][j];
+        }
+    }
+    
+    return maxnum-1;//처음시작 0인데 check값 1이라고 해둠
+}
+```
