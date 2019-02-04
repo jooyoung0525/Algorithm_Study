@@ -149,10 +149,11 @@ https://www.acmicpc.net/board/view/13878
 #include <iostream>
 #include<algorithm>
 
+# define MAX1 10000
 using namespace std;
 
-int tomato[1100][1100] = { 0 , };
-int visited[1100][1100] = { 0, };
+int tomato[MAX1][MAX1] = { 0 , };
+int visited[MAX1][MAX1] = { 0, };
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 int ans;
@@ -163,7 +164,7 @@ queue<pair<int, int>> Q;
 int check_ans(int M, int N)
 {
 	int check=0;
-	int MAX[1000];
+	int MAX[MAX1];
 	
 	for (int i = 0; i < M; i++) {
 
@@ -221,10 +222,9 @@ void BFS(int M, int N)
 					Q.push(make_pair(nx, ny));
 					visited[nx][ny] = 1;
 					visited[nx][ny] = visited[X][Y] + 1;
-					
+				
 				}
-				else if (tomato[nx][ny] == -1)
-					visited[nx][ny] = -1;
+				
 			}
 			//printf("nx,ny : %d\n", visited[nx][ny]);
 			
@@ -240,8 +240,6 @@ void BFS(int M, int N)
 
 int main()
 {
-	
-	int check2=0;
 	int M, N;
 	
 	//scanf("%d %d", &M, &N);
@@ -264,6 +262,8 @@ int main()
 				Q.push(make_pair(i, j));
 				visited[i][j] = 1;
 			}
+			else if (tomato[i][j] == -1)
+				visited[i][j] = -1;
 				
 		}
 	}
@@ -281,7 +281,7 @@ int main()
 
 
 	
-	/* 확인
+	
 	printf("\n");
 	
 	for (int i = 0; i < M; i++) { //행
@@ -291,11 +291,11 @@ int main()
 		printf("\n");
 	}
 
-	*/
+	
 
 	printf("%d",check_ans(M, N));
 	
-	system("pause");
+	
 	return 0;
 }
 ```
