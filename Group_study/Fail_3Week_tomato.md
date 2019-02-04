@@ -268,7 +268,7 @@ void BFS(int M, int N)
 			int nx = X + dx[i];
 			int ny = Y + dy[i];
 
-			if (nx <= -1 || nx > M || ny <= -1 || ny > N) continue;
+			if (nx <= -1 || nx > M || ny <= -1 || ny > N) continue; //M과N일때 예외처리안함..
 
 			if (visited[nx][ny] == -1)
 				continue;
