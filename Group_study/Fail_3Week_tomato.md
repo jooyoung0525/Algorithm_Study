@@ -224,6 +224,13 @@ int main()
 }
 ```
 ---------------------------------------------------------------------------------------------------------------
+# 반례 ▼
+3 3
+1 1 0
+-1-1-1
+-1-1 0 하면 -1나와야지....어??ㅠㅠ
+
+
 ```c
 #include<cstdio>
 #include<cstdlib>
@@ -234,64 +241,17 @@ int main()
 using namespace std;
 
 int tomato[1100][1100] = { 0 , };
-int tomato1[1100][1100] = { 0 , };
 int visited[1100][1100] = { 0, };
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 int ans;
 
 
-queue<pair<int,int>> Q;
-
-int answer(int M, int N)
-{
-	
-	int MAX[1000];
-
-	for (int i = 0; i < M; i++) {
-
-		MAX[i] = *max_element(visited[i], visited[i] + N);
-
-	}
-
-	int MAX2 = *max_element(MAX, MAX + N);
-
-	
-
-	for (int i = 0; i < M; i++) {
-		for (int j = 0; j < N; j++) {
+queue<pair<int, int>> Q;
 
 
-			if (tomato1[i][j] == 0) {
-				ans = -1;
-				break;
-			}
-			else
-			{
-				if (visited[i][j] == 0 && tomato[i][j] != -1)
-				{
-					ans = 0;
-					break;
-				}
-				if (tomato1[i][j] == -1)
-				{
-					ans = 0;
-					break;
-				}
-				else {
-					ans = MAX2 - 1;
-					break;
-				}
 
-			}
-		}
-	}
-	
-	return ans;
-	
-}
-
-void BFS (int curx, int cury, int M, int N )
+void BFS(int M, int N)
 {
 
 	//Q.push(make_pair(curx, cury));
@@ -310,16 +270,21 @@ void BFS (int curx, int cury, int M, int N )
 
 			if (nx <= -1 || nx > M || ny <= -1 || ny > N) continue;
 
-			if (visited[nx][ny] == 0 && tomato[nx][ny] == 0)
+			if (visited[nx][ny] == -1)
+				continue;
+
+			else if (visited[nx][ny] == 0 && tomato[nx][ny] == 0)
 			{
-					Q.push(make_pair(nx, ny));
-					visited[nx][ny] = 1;
-					visited[nx][ny] = visited[X][Y] + 1;
-					tomato1[nx][ny] = 1;
+				Q.push(make_pair(nx, ny));
+				visited[nx][ny] = 1;
+				visited[nx][ny] = visited[X][Y] + 1;
+
 			}
+
 			
-		
-			
+
+
+
 		}
 
 
@@ -327,19 +292,31 @@ void BFS (int curx, int cury, int M, int N )
 
 
 
-	
+
 }
 
 int main()
 {
+	int check=0;
+	int check2=0;
 	int M, N;
+	int MAX[1000];
 	//scanf("%d %d", &M, &N);
 	cin >> N >> M; //행 열 순
 
 	for (int i = 0; i < M; i++) { //행
 		for (int j = 0; j < N; j++) { //열
-			//scanf("%d ", &tomato[i][j]);
-			cin >> tomato[i][j];
+			scanf(" %d", &tomato[i][j]);
+			//cin >> tomato[i][j];
+		}
+	}
+
+
+	for (int i = 0; i < M; i++) { 
+		for (int j = 0; j < N; j++) { 
+			if (tomato[i][j] == 0)  //안익은토마토가 있으면
+				check=10000; //체크  --> 저장될때부터 모든 토마토가 익어있는지 확인
+
 		}
 	}
 
@@ -351,22 +328,59 @@ int main()
 			{
 				Q.push(make_pair(i, j));
 				visited[i][j] = 1;
-				tomato1[i][j] = 1;
 			}
 			else if (tomato[i][j] == -1)
 			{
-				tomato1[i][j] = 1;
+				visited[i][j] = -1;
 			}
 		}
 	}
 
-	BFS(0, 0, M, N);
+	BFS (M, N);
 
-	printf("%d",answer(M, N));
+
+	for (int i = 0; i < M; i++) {
+
+		MAX[i] = *max_element(visited[i], visited[i] + N);
+
+	}
+
+	int MAX2 = *max_element(MAX, MAX + N);
+
+	for (int i = 0; i < M; i++) { //행
+		for (int j = 0; j < N; j++) { //열
+			if (visited[i][j] == 0) {
+				check2 = 2;
+			}
+		}
+	}
+
+	printf("\n");
+	
+	for (int i = 0; i < M; i++) { //행
+		for (int j = 0; j < N; j++) { //열
+			printf("%d ", visited[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("%d\n", check2);
 	
 
-	
+	if (check == 0) {
+		printf("0\n");
 
+	}
+	else if (check2 == 2)
+	{
+		printf("-1");
+	}
+	else 
+	{
+		printf("%d", MAX2 - 1);
+	}
+
+	
 	system("pause");
 	return 0;
 }
