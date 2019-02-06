@@ -227,3 +227,98 @@ int main()
 	return 0;
 }
 ```
+----------------------------------------------------------------------------------------------------------
+# 복습!! 
+
+```c
+#include<cstdio>
+#include<cstdlib>
+#include<iostream>
+#include<algorithm>
+#include<vector>
+
+using namespace std;
+
+int map[1000][1000];
+int visited[1000][1000];
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+int danjinum = 0;
+int danji = 0;
+int ans[1000];
+
+void DFS(int curx,int cury,int N)
+{
+	visited[curx][cury] = 1;
+
+	for (int i = 0; i < 4; i++)
+	{
+		int nx = curx + dx[i];
+		int ny = cury + dy[i];
+
+
+		if (nx <= -1 || nx >= N || ny <= -1 || ny >= N) continue;
+
+		if (visited[nx][ny] == 0 && map[nx][ny] == 1)
+		{
+			
+			DFS(nx, ny, N);
+			danjinum++;
+
+		}
+
+	}
+
+
+
+}
+
+
+
+
+
+int main()
+{
+
+	int N;
+	cin >> N;
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			scanf("%1d", &map[i][j]);
+		}
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			if (visited[i][j] == 0 && map[i][j] == 1)
+			{
+				danjinum = 1;
+				DFS(i, j, N);
+				danji++;
+				ans[danji] = danjinum;
+				//printf("%d\n", danji);
+				//printf("%d\n", danjinum);
+			}
+		}
+	}
+
+	sort(ans, ans+danji+1);
+	
+	printf("%d\n", danji);
+
+	for (int i = 1; i <= danji; i++)
+	{
+		printf("%d\n",ans[i]);
+	}
+
+
+	
+
+	return 0;
+}
+```
