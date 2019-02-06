@@ -1,5 +1,4 @@
-# 와 삼차원으로 바뀌니까 어디가 잘못되는지 모르겠다..
-
+# 맞았쥬~>_<
 
 ![tomato3](https://user-images.githubusercontent.com/29946480/52342257-3f5c1a00-2a58-11e9-87f2-ffeea3754ee7.JPG)
 
