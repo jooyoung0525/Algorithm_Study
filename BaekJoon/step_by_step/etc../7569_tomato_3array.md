@@ -50,7 +50,7 @@ int calculate(int N,int M,int H)
 {
 	
 	int count = 0;
-	int minus = 0;
+	
 
 	for (int k = 0; k < H; k++)
 	{
@@ -60,7 +60,7 @@ int calculate(int N,int M,int H)
 			{
 				if (tomato_box[i][j][k] == 0)
 					count++;
-				else if (visited[i][j][k] == 0)
+				if (visited[i][j][k] == 0)
 					return -1;
 
 			}
@@ -86,12 +86,13 @@ void BFS(int N,int M, int H)
 		int curz = q.front().second;
 		q.pop();
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 6; i++)   //※3차원이니까 6이어야함!!
 		{
 			int nx = curx + dx[i];
 			int ny = cury + dy[i];
 			int nz = curz + dz[i];
 
+			
 			if (nx <= -1 || nx >= N || ny <= -1 || ny >= M || nz <= -1 || nz >= H) continue;
 
 			if (tomato_box[nx][ny][nz] == 0 && visited[nx][ny][nz] == 0)
@@ -136,16 +137,7 @@ int main()
 				{
 					q.push(make_pair(make_pair(i, j), k));
 					visited[i][j][k] = 1;
-					if (k-1 > -1 || k-1 < H)
-					{
-						q.push(make_pair(make_pair(i, j), k-1));
-						visited[i][j][k-1] = 1;
-					}
-					if (k + 1 > -1 || k + 1 < H)
-					{
-						q.push(make_pair(make_pair(i, j), k + 1));
-						visited[i][j][k + 1] = 1;
-					}
+					
 				}
 				else if (tomato_box[i][j][k] == -1 && visited[i][j][k] == 0)
 					visited[i][j][k] = -1;
@@ -154,7 +146,8 @@ int main()
 	}
 
 	BFS(N,M,H);
-
+	
+	/* 검증
 	for (int k = 0; k < H; k++)
 	{
 		for (int i = 0; i < N; i++)
@@ -168,9 +161,12 @@ int main()
 	}
 
 	printf("\n");
+	*/
+	
 	printf("%d", calculate(N, M, H));
 
 
 	return 0;
 }
+
 ```
