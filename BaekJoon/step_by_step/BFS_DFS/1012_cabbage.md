@@ -26,17 +26,17 @@ int ans[1000];
 
 void DFS(int curx, int cury, int N, int M)
 {
-	visited[curx][cury] = 1;
+	visited[curx][cury] = 1; //현재위치 방문
 
 	for (int i = 0; i < 4; i++)
 	{
-		int nx = curx + dx[i];
-		int ny = cury + dy[i];
+		int nx = curx + dx[i];  //x의 다음위치
+		int ny = cury + dy[i];  //y의 다음위치
 
 		if (nx <= -1 || nx >= N || ny <= -1 || ny >= M) continue;
 
-		if (visited[nx][ny] == 0 && bat[nx][ny] == 1)
-			DFS(nx, ny, N, M);
+		if (visited[nx][ny] == 0 && bat[nx][ny] == 1) //배추가 있고, 방문을 하지 않았을 때
+			DFS(nx, ny, N, M);                   //DFS돌려줌
 
 	}
 
@@ -47,17 +47,17 @@ int main()
 	int T, N, M, K;
 	cin >> T;
 
-	for (int i = 0; i < T; i++)
+	for (int i = 0; i < T; i++)   //테스트케이스 개수
 	{
 		
 		cin >> N >> M >> K;
 		num = 0;
 
-		for (int j = 0; j < N; j++)
-		{
+		for (int j = 0; j < N; j++)       //테스트 케이스 개수가 여러 개 일 수 있으므로
+		{                                 //bat배열과 visited배열을 초기화 시켜준다
 			for (int k = 0; k < M; k++)
 			{
-				bat[j][k] = 0;
+				bat[j][k] = 0;  
 				visited[j][k] = 0;
 			}
 		}
@@ -83,24 +83,24 @@ int main()
 		{
 			for (int k = 0; k < M; k++)
 			{
-				if (bat[j][k] == 1 && visited[j][k] == 0)
+				if (bat[j][k] == 1 && visited[j][k] == 0)     //배열에서 배추가 있고, 방문을 안했을 때
 				{
 					
-					DFS(j, k, N, M);
-					num++;
-					ans[i] = num;
+					DFS(j, k, N, M);                    //DFS돌려줌
+					num++;                              //영역을 세는 변수
+					
 				}
 			}
 		}
 
-		
+		ans[i] = num;   //테스트케이스별로 영역갯수 저장
 
 
 	}
 
 	for (int i = 0; i < T; i++)
 	{
-		printf("%d\n", ans[i]);
+		printf("%d\n", ans[i]); //한번에 
 	}
 
 
