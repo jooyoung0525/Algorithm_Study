@@ -1,6 +1,11 @@
 # DFS 이용 (단지번호와 유사한문제)
 
 **행과 열이 헷갈린다.....**
+
+![kakaotalk_20190207_193018725](https://user-images.githubusercontent.com/29946480/52405622-0763de00-2b0f-11e9-95de-edbc9e61a9a9.jpg){: width="200" height="200"} 
+
+![kakaotalk_20190207_193018896](https://user-images.githubusercontent.com/29946480/52405623-0763de00-2b0f-11e9-8912-9214947d6fde.jpg){: width="200" height="200"} 
+
 --------------------------------------------------------------------------------------------------------------
 
 ![asdf](https://user-images.githubusercontent.com/29946480/52404797-38dbaa00-2b0d-11e9-888a-22d65876437c.JPG)
