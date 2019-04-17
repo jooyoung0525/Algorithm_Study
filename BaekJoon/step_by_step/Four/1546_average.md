@@ -33,7 +33,7 @@ int main()
 	}
 
 	double avg = (double) hap / N;  // ☆★실수와 정수 계산에서 형변환 해주지 않으면 제대로 계산이 되지 않는다!
-                                  // 점수들의 평균구하기    
+                                        // 점수들의 평균구하기    
 
 	double ans = (double) avg / M * 100; // 새로운 평균식으로 다시 계산
 
