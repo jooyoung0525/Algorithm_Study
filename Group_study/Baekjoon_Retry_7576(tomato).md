@@ -4,9 +4,11 @@
 
 # *max_element(시작점,시작점+끝점)
 
-### algorithm 선언 후 사용가능.
-### 행으로만 max값을 비교할 수 있음 ( 열끼리 max값 비교 불가 )
+### → algorithm 선언 후 사용가능.
 
+### → 행으로만 max값을 비교할 수 있음 ( 열끼리 max값 비교 불가 )
+
+--------------------------------------------------------------------------------------------------------------------------
 ```c
 
 #include<cstdio>
@@ -92,7 +94,7 @@ void BFS(int M, int N)
 					visit[nx][ny] = 1;
 					visit[nx][ny] = visit[X][Y] + 1;
 				}
-				if (tomato[nx][ny] == -1) //토마토가 빈칸은 visit도 빈칸으로 ( 예외처리 쉽게 )
+				if (tomato[nx][ny] == -1) //토마토가 빈칸(-1값)은 visit도 빈칸(-1값)으로 ( 예외처리 쉽게 )
 					visit[nx][ny] = -1;
 			}
 
@@ -124,7 +126,9 @@ int main()
 		{
 			if (tomato[i][j] == 1)
 			{
-				Q.push(make_pair(i, j));
+				Q.push(make_pair(i, j)); //시작점은 BFS함수 실행전에 이 코드로 queue에 push함으로
+				                         // 따로 BFS함수에서 시작점을 줄 필요가 없다.
+							 // 시작점을 이렇게 먼저 push하는 이유는 모두 다 익은 토마토의 최소값을 구하기 위해.
 				visit[i][j] = 1;
 			}
 			if (tomato[i][j] == -1)  //토마토가 빈칸은 visit도 빈칸으로 ( 예외처리 쉽게 )
@@ -137,7 +141,7 @@ int main()
 	BFS(M, N);
   
 /*
-  디버그
+  디버깅 
 	printf("\n");
 
 	for (i = 0; i < N; i++)
