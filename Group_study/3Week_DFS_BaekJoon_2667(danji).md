@@ -99,7 +99,7 @@ int main()
 
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++)
-			scanf("%1d", &arr[i][j]);
+			scanf("%1d", &arr[i][j]);   //scanf입력받을때 %1d!!!!
 
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
