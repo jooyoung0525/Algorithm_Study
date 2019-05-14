@@ -388,14 +388,14 @@ int main()
 			{
 				house = 0;
 				DFS(i, j, N);
-				allhouse[danjiNum] = house;
+				allhouse[danjiNum] = house;//danjiNum = 0일때부터 house개수를 저장해야 나중에 sort함수 범위에 어긋나지 않음.
 				danjiNum++;
 
 			}
 		}
 	}
 
-	sort(allhouse, allhouse + danjiNum);
+	sort(allhouse, allhouse + danjiNum); //Sort함수 쓸때 범위 주의!! 배열0번째부터 sort
 
 	printf("%d\n", danjiNum);
 	
