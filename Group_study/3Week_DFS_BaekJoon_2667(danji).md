@@ -322,3 +322,89 @@ int main()
 	return 0;
 }
 ```
+---------------------------------------------------------------------------------------------------------------------------------
+# 3달 뒤에 다시 풀었음
+
+### 뭐지....?
+```c
+#include<cstdio>
+#include<cstdlib>
+#include<algorithm>
+
+using namespace std;
+
+int danji[30][30];
+int visit[30][30];
+int dx[] = { 0,0,-1,1 };
+int dy[] = { -1,1,0,0 };
+int danjiNum = 0;
+int house;
+int allhouse[1000];
+
+
+void DFS(int curx, int cury, int N)
+{
+	int i;
+
+	visit[curx][cury] = 1;
+	house++;
+
+	for (i = 0; i < 4; i++)
+	{
+		int nextx = curx + dx[i];
+		int nexty = cury + dy[i];
+
+		if (nextx < 0 || nextx > N || nexty < 0 || nexty > N) continue;
+
+		else {
+			if (danji[nextx][nexty] == 1 && visit[nextx][nexty] == 0)
+			{
+				DFS(nextx, nexty, N);
+			}
+		}
+	}
+
+}
+
+int main()
+{
+	int N, i, j;
+	
+	scanf("%d", &N);
+	
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			scanf("%1d", &danji[i][j]);
+		}
+	}
+
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			if (danji[i][j] == 1 && visit[i][j] == 0)
+			{
+				house = 0;
+				DFS(i, j, N);
+				allhouse[danjiNum] = house;
+				danjiNum++;
+
+			}
+		}
+	}
+
+	sort(allhouse, allhouse + danjiNum);
+
+	printf("%d\n", danjiNum);
+	
+	for (i = 0; i < danjiNum; i++)
+	{
+		printf("%d\n", allhouse[i]);
+	}
+
+	system("pause");
+	return 0;
+}
+```
