@@ -114,3 +114,110 @@ int main()
 	return 0;
 }
 ```
+------------------------------------------------------------------------------------------------------------
+
+# 3개월뒤에 다시풀었다!! 문제 잘읽고풀자 ...
+
+```c
+#include<cstdio>
+#include<cstdlib>
+#include<algorithm>
+
+using namespace std;
+
+int region[200][200];
+int visit[200][200][200] = { 0 }; //visit초기화 대신 3차원배열로 만들어서 풀음.
+int dx[] = { 0,0,-1,1 };
+int dy[] = { -1,1,0,0 };
+int safe_region;
+int save_result[1000];
+
+int find_max(int N) //region영역의 최댓값 찾기
+{
+	int col_max[1000];
+	int max;
+
+	for (int i = 0; i < N; i++)
+	{
+		col_max[i] = *max_element(region[i], region[i] + N);
+	}
+
+	max = *max_element(col_max, col_max + N);
+
+	return max;
+}
+
+void DFS(int curx, int cury, int N, int k)
+{
+	int i;
+	visit[k][curx][cury] = 1;
+
+	for (i = 0; i < 4; i++)
+	{
+		int nx = curx + dx[i];
+		int ny = cury + dy[i];
+
+		if (nx < 0 || ny < 0 || nx > N || ny > N)continue;
+		if (region[nx][ny] > 0 && visit[k][nx][ny] == 0)
+			DFS(nx, ny, N,k);
+	}
+}
+
+int main() {
+
+	int N, i, j, k;
+	int max, result_max;
+	
+
+	scanf("%d", &N);
+
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			scanf("%d", &region[i][j]);
+		}
+	}
+
+	max = find_max(N);
+
+
+	for (k = 0; k < max; k++) //0부터 최댓값까지 높이 1씩 증가하며 같은 연산 반복
+	{
+		
+		safe_region = 0;
+
+		for (i = 0; i < N; i++)
+		{
+			for (j = 0; j < N; j++)
+			{
+				if (region[i][j] == k)
+					region[i][j] = -1; //해당 높이일때 -1값으로 변환
+			}
+		}
+
+		for (i = 0; i < N; i++)   // 주의!! 위의 for문과 따로 돌려줘야함. 위의 for문에서 해당높이의 값을 -1로 
+					  // 변환해준 다음 DFS를 돌려줘야 된다!! (-1의값으로 변환과 동시에 DFS돌리면 정확한 답이 나올 수 없다)
+		{
+			for (j = 0; j < N; j++)
+			{
+				if (region[i][j] > 0 && visit[k][i][j] == 0) {
+
+					DFS(i, j, N,k);
+					safe_region++;
+				}
+			}
+		}
+
+		save_result[k] = safe_region;
+	
+	}
+
+	result_max = *max_element(save_result, save_result + max);
+
+	printf("%d", result_max);
+
+	system("pause");
+	return 0;
+}
+```
