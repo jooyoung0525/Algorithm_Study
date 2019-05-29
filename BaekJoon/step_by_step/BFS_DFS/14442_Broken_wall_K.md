@@ -84,8 +84,10 @@ int main()
 --------------------------------------------------------------------------------------------------------------
 ### 구조체를 이용하여 맞은 코드
 
+
 - 아래의 코드에서 밑의 코드의 조건문을
 
+```c
 if (map[nx][ny] == 0 && visit[nx][ny][broke] == 0) 
 {
 		visit[nx][ny][broke] = visit[curx][cury][broke] + 1;
@@ -96,15 +98,18 @@ if (map[nx][ny] == 1 && nbroke <= K && visit[nx][ny][nbroke] == 0)
 		Q.push({ nx,ny,nbroke });
 		visit[nx][ny][nbroke] = visit[curx][cury][broke] + 1;
 }
+```
 
 아래와 같이 해주면 왜 메모리초과가날까....................
 뭔차이지...
 
+```c
 if(visit[nx][ny][broke] != 0 && visit[nx][ny][nbroke] != 0)continue;
 if(map[nx][ny] == 0)
-  ...
+  //...
 if(map[nx][ny] == 1 && nbroke <= K)
-  ...
+ // ...
+```
 -------------------------------------------------------------------------------------------------------------
 ```c
 #include<cstdio>
