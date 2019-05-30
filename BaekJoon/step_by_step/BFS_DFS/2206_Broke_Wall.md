@@ -55,11 +55,13 @@ int BFS(int N, int M,int canbroken) {     //int형 함수 이용해서 void보�
 				visit[nx][ny][isbroken] = visit[curx][cury][isbroken] + 1;
 			}
 
+/*
 			if (map[nx][ny] == 1 && isbroken == 1)    // 벽이 있고, 벽을 깰 수 있는 상태이면
 			{
 				Q.push(make_pair(make_pair(nx, ny), isbroken-1)); //다음 좌표와 벽을 깬 상태를 Q에 넣어줌
-				visit[nx][ny][isbroken-1] = visit[curx][cury][isbroken] + 1; // 벽을 깬 상태의 (nx,ny)좌표의 방문은 벽을 깨지 않은 현재 위치좌표 + 1
+				visit[nx][ny][isbroken-1] = visit[curx][cury][isbroken] + 1; // 벽을 깬 상태의 (nx,ny)좌표의 방문은 벽을                                                                                               //깨지 않은 현재 위치좌표 + 1
 			}
+*/  // ==> 처음 내 방식대로 푼거 밑에 코드 추가..!
 		}
 
 	}
@@ -90,6 +92,17 @@ int main() {
 	return 0; 
 }
 ```
+
+/*
+
+if (map[nx][ny] == 1 && isbroken == 1)
+{
+		isbroken--;   //isbroken은 while문 안의 변수이기 때문에 여기서 0으로 만들어준다면 꼭 밑에서 다시 원상태로 돌려놔야함!!!
+		Q.push(make_pair(make_pair(nx, ny), isbroken));
+		visit[nx][ny][isbroken] = visit[curx][cury][isbroken+1] + 1;
+		isbroken++;
+}
+*/
 -----------------------------------------------------------------------------------------------------------------------------------
 ## 풀이2. 
 ### 시작점 BFS돌리고 끝점 BFS돌려서 각 배열의 합에 대한 배열의 최솟값을 구해서 푸는 방식 (목수의 미로탈출)
