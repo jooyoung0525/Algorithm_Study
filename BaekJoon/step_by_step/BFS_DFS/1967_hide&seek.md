@@ -34,14 +34,14 @@ void BFS()
 		Q.pop();
 
 		int nx = x - 1; 
-		if (nx >= 0 && visit[nx] == 0)
+		if (nx >= 0 && visit[nx] == 0) //배열은 0부터이므로 nx가 음수이면 안됨.
 		{
 			Q.push(nx);
 			visit[nx] = visit[x] + 1;
 
 		}
 		nx = x + 1;
-		if (nx <= 100000 && visit[nx] == 0)
+		if (nx <= 100000 && visit[nx] == 0) //배열이 100000까지 이므로 nx 가 100000를 넘어가서는 안됨.
 		{
 			Q.push(nx);
 			visit[nx] = visit[x] + 1;
@@ -55,6 +55,10 @@ void BFS()
 	}	
 
 }
+
+// ↓↓ BFS실행할 경우 배열의 상태 ↓↓
+// point[100000] = 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0
+// visit[100000] = 6 5 4 3 2 1 2 3 3 3 2 3 3 4 4 5 4 5 5 4 3
 
 int main()
 {
