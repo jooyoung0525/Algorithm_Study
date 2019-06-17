@@ -19,7 +19,6 @@
 using namespace std;
 
 queue<int> Q;
-int point[100020] = {0};
 int visit[100020] = {0};
 int N, K;
 
