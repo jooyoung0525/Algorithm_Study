@@ -1,3 +1,4 @@
+![로또](https://user-images.githubusercontent.com/29946480/60888224-9445cb80-a256-11e9-9172-b3297ab2dae8.PNG)
 
 ---------------------------------------------------------------------------------------------------------------
 ### 재귀 어려워어어어어어ㅓㅇㄱ
@@ -20,6 +21,14 @@ void pick_num(vector<int>& lotto_num, int i)
 			printf("%d ", x);
 		}
 		printf("\n");
+		
+		/*
+		for(int i = 0; i < 6; i++)
+		{
+			printf("%d ",lotto[i]);
+		}
+		printf("\n);
+		*/
 		
 		return; //return 안해주면 같은 수 반복될 수 있음!
 	}
