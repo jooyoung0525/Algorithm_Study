@@ -110,7 +110,7 @@ int main() {
 		}
 		x = nx;
 		y = ny;
-
+/*
 		for (int j = 0; j < 4; j++)
 		{
 			for (int g = 0; g < 3; g++)
@@ -123,7 +123,7 @@ int main() {
 		printf("\n");
 	}
 				
-	
+*/	
 	system("pause");
 	return 0;
 }
