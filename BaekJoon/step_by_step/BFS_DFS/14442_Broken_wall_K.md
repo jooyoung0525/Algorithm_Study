@@ -193,3 +193,92 @@ int main() {
 	return 0;
 }
 ```
+------------------------------------------------------------------------------------------------------------------------------------
+### 다른방법 ( queue에서 값을 뺼 떄 방문처리)
+-----------------------------------------------------------------------------------------------------------------------------------
+```c
+#include<cstdio>
+#include<cstdlib>
+#include<iostream>
+#include<queue>
+#define INF 100000
+
+using namespace std;
+
+int N, M, K;
+int map[1001][1001] = { 0 };
+int visit[1001][1001][11] = { 0 };
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+int m = INF;
+
+struct Node {
+	int x,y,wall,dist;
+};
+
+queue<Node> Q;
+
+
+int BFS(int K){
+
+	Q.push({ 1, 1, K, 1 });
+	visit[1][1][K] = 1;
+	while (!Q.empty())
+	{
+		Node cur = Q.front();
+		Q.pop();
+
+		if (cur.x == N && cur.y == M)
+		{
+			if (cur.dist < m)
+				m = cur.dist;
+			return m;
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			int nx = cur.x + dx[i];
+			int ny = cur.y + dy[i];
+
+			if (nx < 1 || nx > N  || ny < 1 || ny > M ) continue;
+
+			if (map[nx][ny] == 0)
+			{
+				if (visit[nx][ny][cur.wall] == 0) {
+					Q.push({ nx,ny,cur.wall,cur.dist + 1 });
+					visit[nx][ny][cur.wall] = 1;
+				}
+
+			}
+			else
+			{
+				if (cur.wall > 0 && visit[nx][ny][cur.wall] == 0)
+				{
+					Q.push({ nx,ny,cur.wall - 1,cur.dist + 1 });
+					visit[nx][ny][cur.wall] = 1;
+				}
+			}
+		}
+	}
+	return -1;
+}
+
+int main()
+{
+	scanf("%d %d %d", &N, &M, &K);
+	
+	for (int i = 1; i <= N; i++)
+	{
+		for (int j = 1; j <= M; j++)
+		{
+			scanf("%1d", &map[i][j]);
+		}
+	}
+
+	printf("%d", BFS(K));
+	
+
+	system("pause");
+	return 0;
+}
+```
