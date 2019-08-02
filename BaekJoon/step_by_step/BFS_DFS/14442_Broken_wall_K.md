@@ -194,7 +194,7 @@ int main() {
 }
 ```
 ------------------------------------------------------------------------------------------------------------------------------------
-### 다른방법 ( queue에서 값을 뺼 떄 방문처리)
+### 다른방법 ( queue에서 값을 뺄 떄 방문처리)
 -----------------------------------------------------------------------------------------------------------------------------------
 ```c
 #include<cstdio>
@@ -240,7 +240,7 @@ int BFS(int K){
 			int nx = cur.x + dx[i];
 			int ny = cur.y + dy[i];
 
-			if (nx < 1 || nx > N  || ny < 1 || ny > M ) continue;
+			if (nx < 1 || nx > N  || ny < 1 || ny > M ) continue;  // (1,1)~(N,M)이니까 범위 헷갈리지 않기!!
 
 			if (map[nx][ny] == 0)
 			{
@@ -252,10 +252,10 @@ int BFS(int K){
 			}
 			else
 			{
-				if (cur.wall > 0 && visit[nx][ny][cur.wall] == 0)
+				if (cur.wall > 0 && visit[nx][ny][cur.wall] == 0) // 벽을 부술 수 있는 조건만족
 				{
-					Q.push({ nx,ny,cur.wall - 1,cur.dist + 1 });
-					visit[nx][ny][cur.wall] = 1;
+					Q.push({ nx,ny,cur.wall - 1,cur.dist + 1 }); //벽을 부신 값을 queue
+					visit[nx][ny][cur.wall] = 1; //현재 위치 방문표시
 				}
 			}
 		}
