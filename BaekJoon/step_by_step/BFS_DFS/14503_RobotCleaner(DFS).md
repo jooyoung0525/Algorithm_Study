@@ -28,7 +28,7 @@ void Clean(int x, int y, int dir)
 	int cnt = 0;
 	for(int i = 0; i < 4; i++){
 
-		(dir == 0) ? (dir = 3) : dir-=1 ;
+		(dir == 0) ? (dir = 3) : dir-=1 ; //dir로 돌려주면 for문 돌때, dir값이 처음값으로 초기화됨
 		int nx = x + dx[dir];
 		int ny = y + dy[dir];
 
@@ -74,15 +74,7 @@ int main()
 				count++;
 		}
 	}
-	/*
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			cout<<visit[i][j];
-		}
-		cout << endl;
-	}*/
+	
 	cout << count;
 
 	//system("pause");
