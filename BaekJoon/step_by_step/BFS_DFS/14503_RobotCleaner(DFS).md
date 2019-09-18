@@ -36,10 +36,11 @@ void Clean(int x, int y, int dir)
 		
 		if (map[nx][ny] == 0 && visit[nx][ny] == 0)
 		{
-			Clean(nx, ny, dir);
+			Clean(nx, ny, dir); //리턴이빠짐
 		}
 		cnt++;
 	}
+	(dir == 0) ? (dir = 3) : dir-=1 ; //따로 후진배열 만드는 방법은 원래방향 그대로쓰면됨!!!
 	int backx = x + bx[dir];
 	int backy = y + by[dir];
 	if (cnt == 4 && map[backx][backy] != 1)
