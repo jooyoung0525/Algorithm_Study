@@ -89,6 +89,7 @@ int main()
 ## 풀이2. (dfs풀이 참고해서 해결...)
 ### ------> return; 이용이랑 재귀 아직도 헷갈림ㅠㅠ
 
+
 ```c
 #include<cstdio>
 #include<cstdlib>
@@ -183,9 +184,9 @@ void back(int x, int y, int dir)
 ```
 -------------------------------------------------------------------------------------------------------
 
-### 풀이 2. BFS
+### 풀이 3. BFS
 ###==> break; continue; return; 제대로 안쓰면 답안나옴 ㅠㅠ
-
+### continue 와 break의 차이!  1. continue : 처음으로 돌아가서 다음루프 돈다 2. break :  아예 진행중인 루프를 중단
 ```c
 #include<cstdio>
 #include<cstdlib>
