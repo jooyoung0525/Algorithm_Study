@@ -253,10 +253,10 @@ void Clean()
 			if (map[backx][backy] == 0)
 			{
 				Q.push({ backx,backy,dir });
-				continue;
+				//continue;   ==> 써도되고 
 			}
-			else
-				return;
+			//else
+				//return;
 			
 		}
 	}
