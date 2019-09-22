@@ -181,3 +181,116 @@ void back(int x, int y, int dir)
 		Clean(backx, backy, dir); //다시 탐색해본다. (이때, 방향은 후진 이전 원래방향대로!)
 }
 ```
+-------------------------------------------------------------------------------------------------------
+
+### 풀이 2. BFS
+###==> break; continue; return; 제대로 안쓰면 답안나옴 ㅠㅠ
+
+```c
+#include<cstdio>
+#include<cstdlib>
+#include<iostream>
+#include<queue>
+
+using namespace std;
+
+struct info { int x, y, d; };
+
+queue<info>Q;
+int N, M;
+int map[55][55] = { 0 };
+int visit[55][55] = { 0 };
+int dx[] = {-1,0,1,0};
+int dy[] = {0,1,0,-1};
+int bx[] = { 1,0,-1,0 };
+int by[] = { 0,-1,0,1};
+
+int changedir(int dir)
+{
+	if (dir == 0)return 3;
+	else if (dir == 1)return 0;
+	else if (dir == 2)return 1;
+	else if (dir == 3)return 2;
+}
+
+void Clean()
+{
+	while (!Q.empty()) 
+	{
+		bool flag = false;
+		int cx = Q.front().x;
+		int cy = Q.front().y;
+		int dir = Q.front().d;
+		int nd = dir;
+		Q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			
+			nd = changedir(nd);
+			int nx = cx + dx[nd];
+			int ny = cy + dy[nd];
+			
+			
+			if (nx < 0 || ny < 0 || nx >= N || ny >= M)continue;
+			if (map[nx][ny] == 0 && visit[nx][ny] == 0)
+			{
+				Q.push({ nx,ny,nd });
+				visit[nx][ny] = 1;
+				flag = true;
+				break;
+			}
+			
+		}
+		if (!flag) {
+
+			int backx = cx -dx[dir];
+			int backy = cy -dy[dir];
+			if (backx < 0 || backx >= N || backy < 0 || backy >= M)continue;
+			if (map[backx][backy] == 0)
+			{
+				Q.push({ backx,backy,dir });
+				continue;
+			}
+			else
+				return;
+			
+		}
+	}
+}
+
+int main()
+{
+	int r, c, d;
+	int count = 0;
+	cin >> N >> M;
+	cin >> r >> c >> d;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			cin >> map[i][j];
+		}
+	}
+
+
+	Q.push({ r,c,d });
+	visit[r][c] = 1;
+	Clean();
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (visit[i][j] == 1)
+				count++;
+		}
+		
+	}
+
+	cout << count;
+
+	system("pause");
+	return 0;
+}
+```
