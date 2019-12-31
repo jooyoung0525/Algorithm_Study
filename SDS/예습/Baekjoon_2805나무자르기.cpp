@@ -14,30 +14,29 @@ using namespace std;
 
 int N, M;
 int tree[1000010] = { 0 };
-long long ans = 0;
+int ans = 0;
 
-void binary(int start,int end)
+void binary(int start,int end) //시작값, 끝값
 {
-	long long mid;
-	if (start <= end)
-	{
-		mid = (start + end) / 2;
+	if (start <= end) //시작값이랑 끝값이 같거나, 시작값이 끝값보다 작을경우
+	{ 
+		int mid = (start + end) / 2;
 	
 		long long hap = 0;
 
 		for (int i = 0; i < N; i++)
 		{
-			if (tree[i] - mid < 0)continue;
-			hap += (tree[i] - mid);
+			if (tree[i] > mid) //mid보다 나무의 길이가 크면
+			    hap += (tree[i] - mid); //hap+자른나무의길이
 		}
 
-		if (hap >= M)
+		if (hap >= M) //만약 원하는 나무의길이와 자른나무의 길이가 같거나, 원하는길이보다 더 많이 잘랐을경우 
 		{
 			ans = mid;
-			binary(mid + 1, end);
+			binary(mid + 1, end); //최적값을 찾기위해 다시 이분탐색해봄
 		}
 		else
-			binary(start, mid- 1);
+			binary(start, mid- 1); //자른나무의길이가 원하는 길이보다 작을경우 다시 이분탐색
 	}
 }
 
@@ -50,13 +49,14 @@ int main()
 	cin >> N >> M;
 	
 	for (int i = 0; i < N; i++)
-	{
+	{ 
 		cin >> tree[i];
 	}
 
-	sort(tree, tree + N);
+	sort(tree, tree + N); //이분탐색전 오름차순으로 sort해줘야함
 
-	binary(0,tree[N-1]);
+	binary(0,tree[N-1]); //이분탐색
+	
 	cout << ans;
 	return 0;
 }
