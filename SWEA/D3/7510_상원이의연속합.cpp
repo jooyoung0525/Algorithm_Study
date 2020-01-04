@@ -30,9 +30,9 @@ int main()
 				right++;
 				hap += arr[right];
 			}
-			else if (hap == N)
+			else if (hap == N) //합이 내가 원하던수와 같을경우
 			{
-				cnt++;
+				cnt++; //카운트해줌
 				right++;
 				hap += arr[right];
 			}
