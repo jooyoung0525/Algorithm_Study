@@ -25,7 +25,7 @@ void UUnion(int a, int b)
 
 	if (roota == rootb) return;
 
-//경로압축최적화
+//union-by-rank최적화
 	if (height[roota] > height[rootb]) //roota의 트리크기가 rootb트리크기보다클때 --> roota:큰트리 rootb:작은트리
 		swap(roota, rootb); //순서바꿈 --> swap후, roota:작은트리 rootb:큰트리
 
