@@ -60,7 +60,7 @@ void addcol(int col, int cnt, int x)
 				if (ladder[i][j] == 0 && ladder[i][j - 1] == 0 && ladder[i][j + 1] == 0)
 				{
 					ladder[i][j] = 1;
-					addcol(col,cnt+1,i);
+					addcol(col,cnt+1,i); //넘기는 파라미터 신경쓰기!!(이거때매 몇번 틀림!)
 					ladder[i][j] = 0;
 				}
 			}
