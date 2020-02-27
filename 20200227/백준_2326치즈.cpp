@@ -72,17 +72,17 @@ void Spread_Air()
 			int ny = cy + dy[i];
 
 			if (nx < 0 || ny < 0 || nx >= N || ny >= M)continue;
-			if (visit[nx][ny] == -1)
+			if (visit[nx][ny] == -1) //방문안했고
 			{
-				if (Map[nx][ny] == 0)
+				if (Map[nx][ny] == 0)//다음이 공기이면
 				{
-					Map[nx][ny] = -1;
-					visit[nx][ny] = 0;
-					Air.push({ nx,ny });
+					Map[nx][ny] = -1; //바깥공기표시
+					visit[nx][ny] = 0; //방문표시
+					Air.push({ nx,ny }); //퍼트림
 				}
-				else if (Map[nx][ny] == 1)
+				else if (Map[nx][ny] == 1) //다음이 치즈이면
 				{
-					Cheeze.push({ nx,ny });
+					Cheeze.push({ nx,ny }); //치즈큐에 넣음
 				}
 			}
 		}
@@ -91,12 +91,12 @@ void Spread_Air()
 
 void Melt_cheeze()
 {
-	while (!Air.empty())
+	while (!Air.empty()) //큐 복사위해 초기화
 	{
 		Air.pop();
 	}
 
-	Air = Cheeze;
+	Air = Cheeze; //다음턴에서 현재 치즈가 녹아서 바깥공기가되므로 Air큐에 복사
 
 	while (!Cheeze.empty())
 	{
@@ -104,11 +104,11 @@ void Melt_cheeze()
 		int cy = Cheeze.front().y;
 		Cheeze.pop();
 
-		Map[cx][cy] = -1;
-		visit[cx][cy] = Count;
+		Map[cx][cy] = -1; //치즈가 공기가됨
+		visit[cx][cy] = Count; //몇초에 녹았는지 방문배열에 표시
 	}
 
-	while (!Cheeze.empty())
+	while (!Cheeze.empty()) //다음턴위해 초기화
 	{
 		Cheeze.pop();
 	}
@@ -120,10 +120,10 @@ bool stop()
 	{
 		for (int j = 0; j < M; j++)
 		{
-			if (Map[i][j] == 1)return false;
+			if (Map[i][j] == 1)return false; //치즈가있으면 false
 		}
 	}
-	return true;
+	return true;//치즈가없으면 true
 }
 
 int before_Lasttime()
@@ -131,9 +131,9 @@ int before_Lasttime()
 	int num = 0;
 	for (int i = 0; i < N; i++)
 	{
-		for (int j = 0; j < M; j++)
+		for (int j = 0; j < M; j++) 
 		{
-			if (visit[i][j] == Count)
+			if (visit[i][j] == Count) //치즈가 녹은 시간에서 치즈의 갯수
 				num++;
 		}
 	}
