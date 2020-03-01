@@ -196,7 +196,7 @@ bool check(int fixidx, int changeidx, string a, int stand)
 		return true;
 	}
 
-	else if (a == "CR")
+	else if (a == "CR")//Col Reverse
 	{
 		for (int i = changeidx - L; i < changeidx ; i++)
 		{
@@ -206,7 +206,7 @@ bool check(int fixidx, int changeidx, string a, int stand)
 		return true;
 	}
 
-	else if (a == "RS")
+	else if (a == "RS")//Row Straight
 	{
 		for (int i = changeidx; i < changeidx + L; i++)
 		{
@@ -217,7 +217,7 @@ bool check(int fixidx, int changeidx, string a, int stand)
 		return true;
 	}
 
-	else if (a == "RR")
+	else if (a == "RR")//Row Reverse
 	{
 		for (int i = changeidx - L; i < changeidx; i++)
 		{
