@@ -1,7 +1,6 @@
 // 문제를 잘읽자!  (k범위 100까지)
 
 #include<iostream>
-#include<queue>
 #include<vector>
 #include<algorithm>
 #include<cstring>
@@ -47,15 +46,12 @@ int main()
 		if (time > 100) break;
 
 		char oper = Find_RC();
-	//	cout << "col : " << colsize << " row : " << rowsize << " oper : " << oper << endl;
+	
 		if (oper == 'R')
-		{
 			Roper();
-		}
 		else if (oper == 'C')
-		{
 			Coper();
-		}
+		
 		time++;
 		
 	}
@@ -67,7 +63,7 @@ int main()
 }
 
 
-char Find_RC() // 행, 열 최댓값구하고 R연산,C연산 구분 
+char Find_RC() // 행, 열갯수에 따라 R연산,C연산 구분 
 {
 	if (colsize >= rowsize)return 'R';
 	else return 'C';
@@ -80,7 +76,7 @@ void Roper()
 
 	memset(Cpy_Map, 0, sizeof(Cpy_Map));
 
-	int rowmax = 0;
+	int rowmax = 0; //현재 배열의 최대 열값구하기
 
 	for (int i = 0; i < colsize; i++)
 	{
@@ -109,24 +105,6 @@ void Roper()
 			Cpy_Map[i][(j * 2) + 1] = Cpy[j].cnt;
 		}
 
-		/*
-		if (rowcnt > 100) {
-			for (int j = 0; j < 50; j++)
-			{
-				Cpy_Map[i][j * 2] = Cpy[j].num;
-				Cpy_Map[i][(j * 2) + 1] = Cpy[j].cnt;
-			}
-		}
-
-		else
-		{
-			for (int j = 0; j < Cpy.size(); j++)
-			{
-				Cpy_Map[i][j * 2] = Cpy[j].num;
-				Cpy_Map[i][(j * 2) + 1] = Cpy[j].cnt;
-			}
-		}*/
-
 		rowmax = max(rowmax, rowcnt);
 	}
 
@@ -141,7 +119,7 @@ void Coper()
 
 	memset(Cpy_Map, 0, sizeof(Cpy_Map));
 
-	int colmax = 0;
+	int colmax = 0; //현재 배열의 최대 행 값 구하기
 
 	for (int i = 0; i < rowsize; i++)
 	{
@@ -171,26 +149,9 @@ void Coper()
 			Cpy_Map[(j * 2) + 1][i] = Cpy[j].cnt;
 		}
 
-		/*
-		if (colcnt > 100) {
-			for (int j = 0; j < 50; j++)
-			{
-				Cpy_Map[j * 2][i] = Cpy[j].num;
-				Cpy_Map[(j * 2) + 1][i] = Cpy[j].cnt;
-			}
-		}
-		else
-		{
-			for (int j = 0; j < Cpy.size(); j++)
-			{
-				Cpy_Map[j * 2][i] = Cpy[j].num;
-				Cpy_Map[(j * 2) + 1][i] = Cpy[j].cnt;
-			}
-		}*/
-
 		colmax = max(colmax, colcnt);
 	}
+	
 	colsize = colmax;
-
 	memcpy(&Map, &Cpy_Map, sizeof(Cpy_Map));
 }
