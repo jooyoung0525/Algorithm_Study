@@ -14,7 +14,7 @@ char map[30][30];
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 bool alpha_check[30];
-vector<int>Result;
+
 
 void DFS(int x, int y, int cnt);
 
