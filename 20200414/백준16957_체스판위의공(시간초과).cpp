@@ -7,8 +7,8 @@ struct info { int x, y, num; };
 int R, C;
 int Map[550][550];
 int Result[550][550];
-int dx[] = {-1,-1,0,1,1,1,0,-1};
-int dy[] = {0,1,1,1,0,-1,-1,-1};
+int dx[] = { -1,-1,0,1,1,1,0,-1 };
+int dy[] = { 0,1,1,1,0,-1,-1,-1 };
 bool Stop[550][550];
 
 bool check();
@@ -34,7 +34,7 @@ int main()
 		for (int j = 0; j < C; j++)
 		{
 			int cnt = 0;
-			
+
 			for (int k = 0; k < 8; k++)
 			{
 				int nx = i + dx[k];
@@ -50,15 +50,16 @@ int main()
 			if (cnt == 0) Stop[i][j] = true;
 		}
 	}
-	
+
 	while (1) {
-	
+
 		if (check())break;
 		for (int i = 0; i < R; i++)
 		{
 			for (int j = 0; j < C; j++)
 			{
 				if (Result[i][j] > 0 && !Stop[i][j]) {
+
 					int MMin = 555555;
 					int Mx = i; int My = j;
 					for (int k = 0; k < 8; k++)
@@ -69,15 +70,15 @@ int main()
 						if (nx < 0 || ny < 0 || nx >= R || ny >= C)continue;
 
 						if (Map[i][j] > Map[nx][ny])
-						{	
+						{
 							if (MMin > Map[nx][ny]) {
 								MMin = Map[nx][ny];
 								Mx = nx; My = ny;
 							}
 						}
 					}
-					Result[i][j] -= 1;
-					Result[Mx][My] += 1;
+					Result[Mx][My] += Result[i][j];
+					Result[i][j] =0;
 				}
 			}
 		}
@@ -91,7 +92,7 @@ int main()
 		}
 		cout << endl;
 	}
-	
+
 
 	return 0;
 }
