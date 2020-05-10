@@ -1,9 +1,6 @@
 // 1. cx+Min할때 R의범위를 넘어갈 경우 생각해야함
 
 
-// 1. cx+Min할때 R의범위를 넘어갈 경우 생각해야함
-
-
 #include<iostream>
 #include<queue>
 #include<vector>
