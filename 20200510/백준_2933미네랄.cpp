@@ -1,3 +1,9 @@
+// 1. cx+Min할때 R의범위를 넘어갈 경우 생각해야함
+
+
+// 1. cx+Min할때 R의범위를 넘어갈 경우 생각해야함
+
+
 #include<iostream>
 #include<queue>
 #include<vector>
@@ -17,8 +23,8 @@ vector<info>IDX;
 
 
 
-int Left(int floor);
-int Right(int floor);
+void Left(int floor);
+void Right(int floor);
 void Down();
 bool Can_down();
 void gravity();
@@ -45,42 +51,18 @@ int main()
 
 	for (int i = 1; i <= N; i++)
 	{
-		int x = -1;
+		
 
 		if (i % 2 != 0)
 		{
-			x = Left(R-Throw[i]+1);
+			Left(R-Throw[i]+1);
 		}
 		else
 		{
-			x = Right(R-Throw[i]+1);
+			Right(R-Throw[i]+1);
 		}
-		/*cout << "Clear\n";
-		for (int i = 1; i <= R; i++)
-		{
-			for (int j = 1; j <= C; j++)
-			{
-				cout << Map[i][j];
-			}
-			cout << "\n";
-		}
-		cout << "\n";*/
-		if (x > -1) 
-		{
-
-			Down();
-		}
-		/*
-		cout << "Down\n";
-		for (int i = 1; i <= R; i++)
-		{
-			for (int j = 1; j <= C; j++)
-			{
-				cout << Map[i][j];
-			}
-			cout << "\n";
-		}
-		cout << "\n";*/
+		
+		Down();
 	}
 
 	for (int i = 1; i <= R; i++)
@@ -96,44 +78,34 @@ int main()
 }
 
 
-int Left(int floor)
+void Left(int floor)
 {
-	int j = -1;
-	//cout <<"L"<< floor << "\n";
 	for (int i = 1; i <= C; i++)
 	{
 		if (Map[floor][i] == 'x')
 		{
-			j = i;
 			Map[floor][i] = '.';
 			break;
 		}
 	}
-
-	return j;
 }
 
-int Right(int floor)
+void Right(int floor)
 {
-	int j = -1;
-	//cout << "R"<< floor << "\n";
 	for (int i = C; i >= 1; i--)
 	{
 		if (Map[floor][i] == 'x')
 		{
 			Map[floor][i] = '.';
-			j = i;
 			break;
 		}
 	}
-	return j;
 }
 
 void Down()
 {
 	if (Can_down())
 	{
-		//cout << "cc" << "\n";
 		gravity();
 	}
 	return;
@@ -155,7 +127,7 @@ bool Can_down()
 	IDX.clear();
 	bool flag = false;
 
-	for (int i = R; i >= 1; i--)
+	for (int i = 1; i <= R; i++)
 	{
 		for (int j = 1; j <= C; j++)
 		{
@@ -202,16 +174,6 @@ void gravity()
 		int cy = IDX[i].y;
 		
 		Map[cx + Min][cy] = 'x';
-		/*
-		cout << "\n";
-		for (int i = 1; i <= R; i++)
-		{
-			for (int j = 1; j <= C; j++)
-			{
-				cout << Map[i][j];
-			}
-			cout << "\n";
-		}*/ 
 	}
 
 }
