@@ -40,7 +40,6 @@ void playRecep(int t);
 void playRepair();
 bool CanRepair(int id);
 int findanswer();
-bool Canfinish();
 
 //void debug();
 
@@ -263,12 +262,4 @@ int findanswer() {
 	}
 
 	return tot;
-}
-
-bool Canfinish() {
-
-	for (int i = 1; i <= K; i++) {
-		if (!visit[i]) return true;
-	}
-	return false;
 }
