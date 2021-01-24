@@ -1,4 +1,4 @@
-// 1~N 중 중복없이 M개 고른 수열
+// 1~N 중 중복없이 M개 고른 수열, 현재 수보다 이전수 고를 수 없음
 
 #include<iostream>
 #include<string>
