@@ -1,3 +1,6 @@
+// 스택 DFS
+// 시간초과
+
 #include <stdlib.h>
 #include <iostream>
 #include <stack>
