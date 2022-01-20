@@ -1,4 +1,5 @@
 // dfs 재귀 + 이동가능한 경로를 미리 저장
+// 시간초과 => 메모이제이션 
 
 #include <stdlib.h>
 #include <iostream>
